@@ -63,6 +63,35 @@ router.put('/article/:id', async (req: Request, res: Response) => {
     }
 })
 
+
+router.post('/article/:id/comment', async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id;
+        const options = {new: true};
+
+        const data = new Comment({
+            date: new Date(),
+            content: req.body.content,
+            article: id
+        })
+
+        data.save(async (err, comment) => {
+            const result = await Article.findByIdAndUpdate(
+                {_id: id},
+                {
+                    $push: {
+                        comments: comment._id
+                    }
+                }, options
+            )
+
+            res.send(result)
+        });
+    } catch (error) {
+        res.status(500).json({message: error})
+    }
+})
+
 router.get('/article/:id/comment', async (req: Request, res: Response) => {
     try {
         const id = req.params.id;
