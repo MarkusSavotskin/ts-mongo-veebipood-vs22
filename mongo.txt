@@ -1,0 +1,3 @@
+markussavotskin
+bWgOqV599lTxhQc5
+mongodb+srv://markussavotskin:<password>@cluster0.8gt14un.mongodb.net/db
