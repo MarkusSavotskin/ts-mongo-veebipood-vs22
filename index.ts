@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
 mongoose.connect(
-  "db link"
+  "db"
 );
 const database = mongoose.connection;
 
