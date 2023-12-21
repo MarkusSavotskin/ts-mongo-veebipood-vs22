@@ -3,6 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
+import userController from "./controllers/userController"
+import categoryController from "./controllers/categoryController"
+import productController from "./controllers/productController"
+import cartProductController from "./controllers/cartProductController"
+import orderController from "./controllers/orderController"
+
 mongoose.connect(
   "db"
 );
@@ -24,6 +30,12 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+app.use("/", userController)
+app.use("/", categoryController)
+app.use("/", productController)
+app.use("/", cartProductController)
+app.use("/", orderController)
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
